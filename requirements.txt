@@ -1,3 +1,4 @@
 Flask
 textblob
 google-cloud-language
+flask-cors
