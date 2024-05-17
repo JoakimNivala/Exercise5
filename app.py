@@ -4,7 +4,6 @@ from google.cloud import language_v1
 
 app = Flask(__name__)
 
-# Set the path to the service account key file
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service-account-file.json"
 
 def analyze_sentiment(text):
