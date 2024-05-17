@@ -9,7 +9,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 def analyze_sentiment():
     if request.method == "POST":
         try:
-            text = request.form["text"] 
+            text = request["text"] 
             sentiment = TextBlob(text).sentiment.polarity
 
             if sentiment > 0:
