@@ -5,12 +5,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["POST"])
 def analyze_sentiment():
     if request.method == "POST":
-       
-        print("Form Data:", request.form)
-        
         try:
             text = request.form["text"] 
             sentiment = TextBlob(text).sentiment.polarity
@@ -25,8 +22,6 @@ def analyze_sentiment():
             return result
         except KeyError:
             return "Error: 'text' key not found in form data"
-    else:
-        return "<p>Enter text for sentiment analysis</p><form method='POST'><input type='text' name='text' /><input type='submit' value='Analyze'></form>"
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
