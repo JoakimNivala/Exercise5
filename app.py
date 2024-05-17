@@ -3,9 +3,9 @@ from textblob import TextBlob
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route("*", methods="POST")
+@app.route("/", methods=["GET", "POST"])
 def analyze_sentiment():
   if request.method == "POST":
     text = request.form["text"] 
