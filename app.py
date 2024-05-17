@@ -1,10 +1,25 @@
-from flask import Flask
+from flask import Flask, request
+from textblob import TextBlob
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World! changes</p>"
+@app.route("/", methods=["GET", "POST"])
+def analyze_sentiment():
+  if request.method == "POST":
+    text = request.form["text"] 
+    sentiment = TextBlob(text).sentiment.polarity
+
+    if sentiment > 0:
+      result = "Positive"
+    elif sentiment < 0:
+      result = "Negative"
+    else:
+      result = "Neutral"
+
+    return result
+  else:
+    return "<p>Enter text for sentiment analysis</p><form method='POST'><input type='text' name='text' /><input type='submit' value='Analyze'></form>"
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
