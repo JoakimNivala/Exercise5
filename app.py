@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("https://be-cloud-computing-course-project.rahtiapp.fi/", methods=["GET", "POST"])
 def analyze_sentiment():
   if request.method == "POST":
     text = request.form["text"] 
