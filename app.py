@@ -4,7 +4,7 @@ from google.cloud import language_v1
 
 app = Flask(__name__)
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service-account-file.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service-account-file.json.base64"
 
 def analyze_sentiment(text):
     client = language_v1.LanguageServiceClient()
